@@ -37,4 +37,23 @@ router.get('/:userId',async (req, res) =>{
     }
 })
 
+// save post
+router.post('/',async (req,res) => {
+    const posts = new Posts({
+        userId:req.body.userId,
+        date:req.body.date,
+        time:req.body.time,
+        title:req.body.title,
+        body:req.body.body
+    })
+
+    try {
+        const post = await posts.save()
+        res.json(post)
+    }catch (error) {
+        res.send('Error : '+ error)
+    }
+
+})
+
 module.exports = router
