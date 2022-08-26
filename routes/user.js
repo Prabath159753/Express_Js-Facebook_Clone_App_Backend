@@ -57,5 +57,25 @@ router.post('/',async (req,res) => {
 
 })
 
+// update user
+router.put('/:id',async (req,res) =>{
+    try {
+        const register = await User.findById(req.params.id)
+        register.firstName = req.body.firstName
+        register.surname = req.body.surname
+        register.gender = req.body.gender
+        register.dateOfBirth = req.body.dateOfBirth
+        register.password = req.body.password
+        register.phoneNumber = req.body.phoneNumber
+        register.email = req.body.email
+
+        const response = await register.save()
+        res.json(response)
+
+    }catch (error) {
+        res.send('Error : '+ error)
+    }
+})
+
 
 module.exports = router
