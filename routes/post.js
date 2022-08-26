@@ -26,9 +26,15 @@ router.get('/:id',async (req, res) =>{
     }
 })
 
+// get post in post publish user id
+router.get('/:userId',async (req, res) =>{
+    try {
+        const posts = await Posts.find({ userId: req.params.userId })
 
-
-
-
+        res.json(posts)
+    }catch (error) {
+        res.send('Error : '+ error)
+    }
+})
 
 module.exports = router
