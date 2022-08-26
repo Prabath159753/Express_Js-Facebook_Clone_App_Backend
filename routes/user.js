@@ -57,7 +57,7 @@ router.post('/',async (req,res) => {
 
 })
 
-// update user
+// update user for select user id
 router.put('/:id',async (req,res) =>{
     try {
         const register = await User.findById(req.params.id)
@@ -74,6 +74,17 @@ router.put('/:id',async (req,res) =>{
 
     }catch (error) {
         res.send('Error : '+ error)
+    }
+})
+
+// delete user for select user id
+router.delete('/:id',async (req,res) =>{
+    try {
+        const register = await User.findById(req.params.id)
+        const response = await register.remove()
+        res.json(response)
+    }catch (error) {
+        res.send('Error : '+error)
     }
 })
 
