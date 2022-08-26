@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 
 const user = require('./routes/user')
 const posts = require('./routes/posts')
+const login = require('./routes/login')
 
 const app=express()
 const port = 4001
@@ -20,6 +21,7 @@ app.use(express.json())
 
 app.use('/user', user)
 app.use('/post', posts)
+app.use('/login', login)
 
 app.listen(port, () => {
     console.log(`app starting on ${port}`);
