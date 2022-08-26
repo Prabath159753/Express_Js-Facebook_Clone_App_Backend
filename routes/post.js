@@ -56,4 +56,22 @@ router.post('/',async (req,res) => {
 
 })
 
+// update post for search post id
+router.put('/:id',async (req,res) =>{
+    try {
+        const post = await Posts.findById(req.params.id)
+        post.userId = req.body.userId
+        post.date = req.body.date
+        post.time = req.body.time
+        post.title = req.body.title
+        post.body = req.body.body
+
+        const response = await post.save()
+
+        res.json(response)
+    }catch (error) {
+        res.send('Error : '+error)
+    }
+})
+
 module.exports = router
